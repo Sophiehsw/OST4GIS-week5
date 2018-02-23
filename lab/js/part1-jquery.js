@@ -170,6 +170,69 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
+//Task 1
+$('#text-label1').text('First Name');
+$('#text-label2').text('Middle Name');
+$('#text-label3').text('Last Name');
+$('#number-label').text('Date of Birth');
+$('#checkbox-label1').text('male');
+$('#checkbox-label2').text('female');
+$('#color-label').text('Favorite color');
+//Task 2
+$('#text-input1').val('Amy');
+$('#text-input2').val('Beth');
+$('#text-input3').val('Schumer');
+$('#numeric-input').val('06011981');
+$('#cbox-input2').prop( "checked", true );
+$('#color-input').val('#970343');
+//Task3
+var input = function(){
+  var inputkey = ['#text-label1','#text-label2','#text-label3','#number-label','#checkbox-label1','#checkbox-label2','#color-label'];
+  var inputval = ['#text-input1','#text-input2','#text-input3','#numeric-input','#color-input'];
+  var checkbox = ['#cbox-input1','#cbox-input2'];
+  var keys = _.map(inputkey, function(each){return $(each).text();});
+  var vals = _.map(inputval, function(each){return $(each).val();});
+ var add = _.map(checkbox, function(each){return $(each).prop("checked");});
+  vals.splice(4,0,add[0],add[1]); //array.splice(index, howmany, item1, ....., itemX), index = what position to add/remove items, homeway = The number of items to be removed.item1...=item to be added
+  var obj = {};
+  for (i=0;i<keys.length;i++){
+    obj[keys[i]] = vals[i];
+  }
+  console.log(obj);
+  return obj;
+};
+//TASK 4
+$('#text-input1').prop('disabled',false);
+$('#text-input2').prop('disabled',false);
+$('#text-input3').prop('disabled',false);
+$('#numeric-input').prop('disabled',false);
+$('#checkbox-label1').prop('disabled',false);
+$('#checkbox-label2').prop('disabled',false);
+$('#color-label').prop('disabled',false);
+//Task5
+$("button").text('Her Favorite Spot?');
+$("button").click(function() {
+  input();
+  marker();
+});
+//Task6
+$('#number-label2').text('Latitude');
+$('#number-label3').text('Longtitude');
+$('#numeric-input2').prop('disabled',false);
+$('#numeric-input3').prop('disabled',false);
+$('#numeric-input2').val('39.921100');
+$('#numeric-input3').val('-75.145070');
+var marker = function(){
+var numberimput2 =  $('#numeric-input2').val();
+var numberimput3 =  $('#numeric-input3').val();
+var textinput1 =   "Amy's Favorite Cheesesteak";
+  L.circleMarker([numberimput2, numberimput3]).addTo(map).bindPopup(textinput1).openPopup();
+};
+
+
+
+
+
 $(document).ready(function() {
   // Do your stuff here
 });
